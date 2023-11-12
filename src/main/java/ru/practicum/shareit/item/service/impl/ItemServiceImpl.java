@@ -1,46 +1,41 @@
-package ru.practicum.shareit.item.controller;
+package ru.practicum.shareit.item.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
+import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 
 import java.util.List;
 
-/**
- * TODO Sprint add-controllers.
- */
-@RestController
-@RequestMapping("/items")
+@Service
 @RequiredArgsConstructor
-public class ItemController {
+public class ItemServiceImpl implements ItemService {
 
-    private final ItemService is;
+    private final ItemStorage ist;
 
-    @PostMapping
+    @Override
     public ItemDto postItem(ItemDto itemDto) {
         return null;
     }
 
-    @PatchMapping("/{id}")
+    @Override
     public ItemDto patchItem(int id) {
         return null;
     }
 
-    @GetMapping("/{id}")
+    @Override
     public ItemDto getItemById(int id) {
         return null;
     }
 
-    @GetMapping
+    @Override
     public List<ItemDto> getAllItems() {
         return null;
     }
 
-    @GetMapping("/search")
+    @Override
     public List<ItemDto> findItemsByText() {
         return null;
     }
-
-
 }
