@@ -1,10 +1,10 @@
-package ru.practicum.shareit.item.dao.impl;
+package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.practicum.shareit.item.dao.ItemStorage;
-import ru.practicum.shareit.item.dto.ItemDto;
-import ru.practicum.shareit.item.model.Item;
+import ru.practicum.shareit.item.ItemStorage;
+import ru.practicum.shareit.item.ItemDto;
+import ru.practicum.shareit.item.Item;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +18,10 @@ public class InMemoryItemStorage implements ItemStorage {
 
     @Override
     public Item postItem(Item item) {
-        return null;
+
+        item.setId(getNextId());
+        items.put(item.getId(), item);
+        return getItemById(item.getId());
     }
 
     @Override
@@ -28,7 +31,7 @@ public class InMemoryItemStorage implements ItemStorage {
 
     @Override
     public Item getItemById(int id) {
-        return null;
+        return items.get(id);
     }
 
     @Override
