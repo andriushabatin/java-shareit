@@ -3,6 +3,7 @@ package ru.practicum.shareit.item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,25 +21,29 @@ public class ItemController {
         return is.postItem(itemDto, userId);
     }
 
-    @PatchMapping("/{id}")
-    public ItemDto patchItem(@PathVariable int id, @RequestBody ItemDto itemdto) {
-        return null;
+    @PatchMapping("/{itemId}")
+    public ItemDto patchItem(@RequestBody HashMap<String, Object> fields,
+                             @PathVariable int itemId,
+                             @RequestHeader("X-Sharer-User-Id") int userId) {
+
+        return is.patchItem(fields, itemId, userId);
     }
 
-    @GetMapping("/{id}")
-    public ItemDto getItemById(int id) {
-        return null;
+    @GetMapping("/{itemId}")
+    public ItemDto getItemById(@PathVariable int itemId) {
+
+        return is.getItemById(itemId);
     }
 
     @GetMapping
-    public List<ItemDto> getAllItems() {
-        return null;
+    public List<ItemDto> getAllItemsByUserId(@RequestHeader("X-Sharer-User-Id") int userId) {
+
+        return is.getAllItemsByUserId(userId);
     }
 
     @GetMapping("/search")
-    public List<ItemDto> findItemsByText() {
-        return null;
+    public List<ItemDto> findItemsByText(@RequestParam String text) {
+
+        return is.findItemsByText(text);
     }
-
-
 }

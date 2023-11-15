@@ -1,30 +1,26 @@
 package ru.practicum.shareit.item;
 
-import ru.practicum.shareit.item.ItemDto;
-import ru.practicum.shareit.item.Item;
-
 public class ItemMapper {
 
     public static ItemDto toItemDto(Item item) {
 
-        return new ItemDto(item.getId(),
-                item.getOwnerId(),
-                item.getRequestId(),
-                item.getName(),
-                item.getDescription(),
-                item.getIsAvailable()
-                );
+        return ItemDto.builder()
+                .id(item.getId())
+                .ownerId(item.getOwnerId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.getAvailable())
+                .build();
     }
 
-    public static Item toItem(ItemDto itemDto) {
+    public static Item toItem(ItemDto itemDto, int userId) {
 
-        return new Item(itemDto.getId(),
-                itemDto.getOwnerId(),
-                itemDto.getRequestId(),
-                itemDto.getName(),
-                itemDto.getDescription(),
-                itemDto.getAvailable()
-        );
+        return Item.builder()
+                .ownerId(userId)
+                .name(itemDto.getName())
+                .description(itemDto.getDescription())
+                .available(itemDto.getAvailable())
+                .build();
     }
 }
 

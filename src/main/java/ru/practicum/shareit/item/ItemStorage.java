@@ -9,11 +9,11 @@ public interface ItemStorage {
 
     public Item postItem(Item item);
 
-    public Item patchItem(int id);
+    public Item patchItem(Item itemToPatch, int itemId);
 
-    public Item getItemById(int id);
+    public Item getItemById(int itemId);
 
-    public List<ItemDto> getAllItems();
+    public List<Item> getAllItemsByUserId(int userId);
 
-    public List<ItemDto> findItemsByText();
+    public List<Item> findItemsByText(String text);
 }

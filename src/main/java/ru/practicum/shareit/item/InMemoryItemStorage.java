@@ -8,6 +8,7 @@ import ru.practicum.shareit.item.Item;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -25,23 +26,35 @@ public class InMemoryItemStorage implements ItemStorage {
     }
 
     @Override
-    public Item patchItem(int id) {
-        return null;
+    public Item patchItem(Item itemToPatch, int itemId) {
+
+        items.put(itemId, itemToPatch);
+        return getItemById(itemId);
     }
 
     @Override
-    public Item getItemById(int id) {
-        return items.get(id);
+    public Item getItemById(int itemId) {
+
+        return items.get(itemId);
     }
 
     @Override
-    public List<ItemDto> getAllItems() {
-        return null;
+    public List<Item> getAllItemsByUserId(int userId) {
+
+        return items.values()
+                .stream()
+                .filter(user -> user.getOwnerId() == userId)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<ItemDto> findItemsByText() {
-        return null;
+    public List<Item> findItemsByText(String text) {
+
+        return items.values()
+                .stream()
+                .filter(user -> user.getName().toLowerCase().contains(text)
+                        || user.getDescription().toLowerCase().contains(text))
+                .collect(Collectors.toList());
     }
 
     public int getNextId() {
