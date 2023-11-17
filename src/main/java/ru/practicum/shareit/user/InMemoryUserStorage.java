@@ -1,15 +1,17 @@
-package ru.practicum.shareit.user.dao.impl;
+package ru.practicum.shareit.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.practicum.shareit.user.dao.UserStorage;
-import ru.practicum.shareit.user.model.User;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Component
+@Validated
 @RequiredArgsConstructor
 public class InMemoryUserStorage implements UserStorage {
 
@@ -35,10 +37,20 @@ public class InMemoryUserStorage implements UserStorage {
     }
 
     @Override
-    public User putUser(User user) {
+    public User patchUser(@Valid User userToPatch) {
 
-        users.put(user.getId(), user);
-        return getUserById(user.getId());
+        /*if (!getAllUsers().isEmpty()) {
+
+            User oldUser = getUserById(userId);
+            deleteUserById(userId);
+
+            if (getAllUsers().stream().anyMatch(user -> user.getEmail().equals(userToPatch.getEmail()))) {
+                users.put(userId, oldUser);
+                throw new ValidationException("Email must be unique");
+            }
+        }*/
+        users.put(userToPatch.getId(), userToPatch);
+        return getUserById(userToPatch.getId());
     }
 
     @Override

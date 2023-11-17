@@ -18,7 +18,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto postItem(ItemDto itemDto, int userId) {
-
         return ItemMapper.toItemDto(ist.postItem(ItemMapper.toItem(itemDto, userId)));
     }
 
@@ -35,13 +34,12 @@ public class ItemServiceImpl implements ItemService {
             });
             return ItemMapper.toItemDto(ist.patchItem(itemToPatch.get(), itemId));
         } else {
-            throw new RuntimeException("Не найден item по идентификатору:: " + itemId);
+            throw new RuntimeException("Не найден user по идентификатору:: " + userId);
         }
     }
 
     @Override
     public ItemDto getItemById(int itemId) {
-
         return ItemMapper.toItemDto(ist.getItemById(itemId));
     }
 

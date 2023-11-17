@@ -3,7 +3,6 @@ package ru.practicum.shareit.item;
 public class ItemMapper {
 
     public static ItemDto toItemDto(Item item) {
-
         return ItemDto.builder()
                 .id(item.getId())
                 .ownerId(item.getOwnerId())
@@ -14,7 +13,6 @@ public class ItemMapper {
     }
 
     public static Item toItem(ItemDto itemDto, int userId) {
-
         return Item.builder()
                 .ownerId(userId)
                 .name(itemDto.getName())

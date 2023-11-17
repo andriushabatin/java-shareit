@@ -25,25 +25,21 @@ public class ItemController {
     public ItemDto patchItem(@RequestBody HashMap<String, Object> fields,
                              @PathVariable int itemId,
                              @RequestHeader("X-Sharer-User-Id") int userId) {
-
         return is.patchItem(fields, itemId, userId);
     }
 
     @GetMapping("/{itemId}")
     public ItemDto getItemById(@PathVariable int itemId) {
-
         return is.getItemById(itemId);
     }
 
     @GetMapping
     public List<ItemDto> getAllItemsByUserId(@RequestHeader("X-Sharer-User-Id") int userId) {
-
         return is.getAllItemsByUserId(userId);
     }
 
     @GetMapping("/search")
     public List<ItemDto> findItemsByText(@RequestParam String text) {
-
         return is.findItemsByText(text);
     }
 }

@@ -1,8 +1,6 @@
 package ru.practicum.shareit.item;
 
-import ru.practicum.shareit.item.ItemDto;
-import ru.practicum.shareit.item.Item;
-
+import javax.validation.Valid;
 import java.util.List;
 
 public interface ItemStorage {

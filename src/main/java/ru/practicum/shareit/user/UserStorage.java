@@ -1,7 +1,6 @@
-package ru.practicum.shareit.user.dao;
+package ru.practicum.shareit.user;
 
-import ru.practicum.shareit.user.model.User;
-
+import javax.validation.Valid;
 import java.util.List;
 
 public interface UserStorage {
@@ -12,7 +11,9 @@ public interface UserStorage {
 
     public List<User> getAllUsers();
 
-    public User putUser(User newUser);
+    User patchUser(@Valid User userToPatch);
 
     public List<User> deleteUserById(int id);
+
+
 }

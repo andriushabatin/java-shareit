@@ -2,10 +2,12 @@ package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 import ru.practicum.shareit.item.ItemStorage;
 import ru.practicum.shareit.item.ItemDto;
 import ru.practicum.shareit.item.Item;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
