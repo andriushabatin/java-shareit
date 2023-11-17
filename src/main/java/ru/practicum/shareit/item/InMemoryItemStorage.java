@@ -3,6 +3,7 @@ package ru.practicum.shareit.item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +47,10 @@ public class InMemoryItemStorage implements ItemStorage {
 
     @Override
     public List<Item> findItemsByText(String text) {
+
+        if(text.isBlank()) {
+            return new ArrayList<>();
+        }
 
         return items.values()
                 .stream()
