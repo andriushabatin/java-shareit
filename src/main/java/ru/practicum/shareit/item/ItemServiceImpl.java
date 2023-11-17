@@ -10,6 +10,7 @@ import ru.practicum.shareit.user.UserService;
 
 import javax.validation.Valid;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -71,6 +72,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDto> findItemsByText(String text) {
+
+        if (text.isBlank()) {
+            return new ArrayList<>();
+        }
 
         return ist.findItemsByText(text.toLowerCase())
                 .stream()
