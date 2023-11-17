@@ -1,13 +1,12 @@
 package ru.practicum.shareit.item;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface ItemStorage {
 
     public Item postItem(Item item);
 
-    public Item patchItem(Item itemToPatch, int itemId);
+    public Item patchItem(Item itemToPatch);
 
     public Item getItemById(int itemId);
 

@@ -14,6 +14,7 @@ public class ItemMapper {
 
     public static Item toItem(ItemDto itemDto, int userId) {
         return Item.builder()
+                .id(itemDto.getId())
                 .ownerId(userId)
                 .name(itemDto.getName())
                 .description(itemDto.getDescription())

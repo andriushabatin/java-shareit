@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.annotation.Validated;
+import ru.practicum.shareit.exception.NotFoundException;
+import ru.practicum.shareit.exception.ValidationException;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(int id) {
-        return UserMapper.toUserDto(ust.getUserById(id));
+
+        Optional<User> userToReturn = Optional.ofNullable(ust.getUserById(id));
+        if (userToReturn.isEmpty()) {
+            throw new NotFoundException("Не найден user по идентификатору:: " + id);
+        }
+        return UserMapper.toUserDto(userToReturn.get());
     }
 
     @Override
@@ -66,7 +72,7 @@ public class UserServiceImpl implements UserService {
             return UserMapper.toUserDto(ust.patchUser(UserMapper.toUser(userDtoOfUserToPatch)));
 
         } else {
-            throw new RuntimeException("Не найден item по идентификатору:: " + userId);
+            throw new RuntimeException("Не найден user по идентификатору:: " + userId);
         }
     }
 

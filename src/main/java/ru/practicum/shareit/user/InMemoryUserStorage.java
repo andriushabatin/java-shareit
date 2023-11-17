@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,16 +38,6 @@ public class InMemoryUserStorage implements UserStorage {
     @Override
     public User patchUser(@Valid User userToPatch) {
 
-        /*if (!getAllUsers().isEmpty()) {
-
-            User oldUser = getUserById(userId);
-            deleteUserById(userId);
-
-            if (getAllUsers().stream().anyMatch(user -> user.getEmail().equals(userToPatch.getEmail()))) {
-                users.put(userId, oldUser);
-                throw new ValidationException("Email must be unique");
-            }
-        }*/
         users.put(userToPatch.getId(), userToPatch);
         return getUserById(userToPatch.getId());
     }

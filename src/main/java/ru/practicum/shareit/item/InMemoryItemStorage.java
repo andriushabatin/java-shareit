@@ -2,12 +2,7 @@ package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
-import ru.practicum.shareit.item.ItemStorage;
-import ru.practicum.shareit.item.ItemDto;
-import ru.practicum.shareit.item.Item;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,10 +23,10 @@ public class InMemoryItemStorage implements ItemStorage {
     }
 
     @Override
-    public Item patchItem(Item itemToPatch, int itemId) {
+    public Item patchItem(Item itemToPatch) {
 
-        items.put(itemId, itemToPatch);
-        return getItemById(itemId);
+        items.put(itemToPatch.getId(), itemToPatch);
+        return getItemById(itemToPatch.getId());
     }
 
     @Override

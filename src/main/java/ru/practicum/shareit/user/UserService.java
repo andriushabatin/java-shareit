@@ -1,7 +1,5 @@
 package ru.practicum.shareit.user;
 
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
