@@ -1,19 +1,11 @@
 package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.exception.NotFoundException;
-import ru.practicum.shareit.exception.ValidationException;
 
-import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-/**
- * TODO Sprint add-controllers.
- */
 @RestController
 @RequestMapping("/items")
 @RequiredArgsConstructor
@@ -21,15 +13,17 @@ public class ItemController {
 
     private final ItemService is;
 
+    private static final String USER_ID_HEADER = "X-Sharer-User-Id";
+
     @PostMapping
-    public ItemDto postItem(@RequestBody ItemDto itemDto, @RequestHeader("X-Sharer-User-Id") int userId) {
+    public ItemDto postItem(@RequestBody ItemDto itemDto, @RequestHeader(USER_ID_HEADER) int userId) {
         return is.postItem(itemDto, userId);
     }
 
     @PatchMapping("/{itemId}")
     public ItemDto patchItem(@RequestBody HashMap<String, Object> fields,
                              @PathVariable int itemId,
-                             @RequestHeader("X-Sharer-User-Id") int userId) {
+                             @RequestHeader(USER_ID_HEADER) int userId) {
         return is.patchItem(fields, itemId, userId);
     }
 
@@ -39,7 +33,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDto> getAllItemsByUserId(@RequestHeader("X-Sharer-User-Id") int userId) {
+    public List<ItemDto> getAllItemsByUserId(@RequestHeader(USER_ID_HEADER) int userId) {
         return is.getAllItemsByUserId(userId);
     }
 
