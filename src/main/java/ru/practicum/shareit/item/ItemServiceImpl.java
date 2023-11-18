@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.annotation.Validated;
 import ru.practicum.shareit.exception.NotFoundException;
-import ru.practicum.shareit.exception.ValidationException;
 import ru.practicum.shareit.exception.WrongUserException;
 import ru.practicum.shareit.user.UserDto;
 import ru.practicum.shareit.user.UserService;
