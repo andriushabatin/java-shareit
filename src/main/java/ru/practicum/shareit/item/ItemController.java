@@ -47,22 +47,4 @@ public class ItemController {
     public List<ItemDto> findItemsByText(@RequestParam String text) {
         return is.findItemsByText(text);
     }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleNotFoundException(final NotFoundException e) {
-        return Map.of("error:", e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleMethodArgumentNotValidException(final ValidationException e) {
-        return Map.of("error:", e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleMethodArgumentNotValidException(final ConstraintViolationException e) {
-        return Map.of("error:", e.getMessage());
-    }
 }

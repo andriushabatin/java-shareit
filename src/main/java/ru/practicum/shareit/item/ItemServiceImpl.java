@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.annotation.Validated;
+import ru.practicum.shareit.exception.NotFoundException;
 import ru.practicum.shareit.exception.ValidationException;
+import ru.practicum.shareit.exception.WrongUserException;
 import ru.practicum.shareit.user.UserDto;
 import ru.practicum.shareit.user.UserService;
 
@@ -46,13 +48,13 @@ public class ItemServiceImpl implements ItemService {
             });
 
             if (itemToPatch.get().getOwnerId() != userId) {
-                throw new ValidationException("User с идентификатором " + userId + " не может редактировать этот item");
+                throw new WrongUserException("User с идентификатором " + userId + " не может редактировать этот item");
             }
 
             return ItemMapper.toItemDto(ist.patchItem(ItemMapper.toItem(dtoOfItemToPatch, userId)));
 
         } else {
-            throw new RuntimeException("Не найден user по идентификатору:: " + userId);
+            throw new NotFoundException("Не найден user по идентификатору:: " + userId);
         }
     }
 

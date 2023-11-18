@@ -44,18 +44,5 @@ public class UserController {
     public List<UserDto> deleteUserById(@PathVariable int id) {
         return us.deleteUserById(id);
     }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleMethodArgumentNotValidException(final ConstraintViolationException e) {
-        return Map.of("error:", e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public Map<String, String> handleMethodArgumentNotValidException(final ValidationException e) {
-        return Map.of("error:", e.getMessage());
-    }
-
 }
 
