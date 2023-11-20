@@ -1,12 +1,8 @@
 package ru.practicum.shareit.booking;
 
-
-import lombok.Data;
-
 import java.time.LocalDateTime;
 
-@Data
-public class Booking {
+public class BookingDto {
 
     private Integer id;
     private Integer itemId;
